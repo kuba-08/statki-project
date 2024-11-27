@@ -15,5 +15,7 @@ Game();
     void play();
     void showResults() const;
     bool askPlayerAgain();
+void printBoardsSideBySide(const Board& boardOpponent, const Board& boardPlayer, bool revealPlayerShips);
 
+    
 };
