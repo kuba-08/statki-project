@@ -15,7 +15,7 @@ public:
     string getName() const;
 };
 
- /*class HumanPlayer : public Player {
+class HumanPlayer : public Player {
 public:
     HumanPlayer(const string& name);
     void placeShips() override;
@@ -27,4 +27,4 @@ public:
     AIPlayer();
     void placeShips() override;
     bool takeTurn(Player& opponent) override;
-}; /*
+};
