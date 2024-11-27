@@ -18,13 +18,15 @@ do
    cin >> choice;
     if (choice == '1') {
         game.setupPlayers(false);  // Gra dla dwóch graczy
+        break;
     } else if (choice == '2') {
         game.setupPlayers(true);   // Gra z AI
+        break;
     } else {
         cout << "Nieprawidłowy wybór, Spróbuj ponownie.\n";
         
     }
-} while (choice == '3');
+} while (choice != '2' || choice != '1');
 
     
 
