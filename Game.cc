@@ -1,10 +1,11 @@
 #include "Game.h"
+#include "Board.h"
 #include <iostream>
 using namespace std;
 Game::Game() : player1Wins(0), player2Wins(0)
 {
-    make_unique<Player>("Gracz 1");
-    make_unique<Player>("Gracz 2");
+   player1 = make_unique<Player>("Gracz 1");
+    player2 = make_unique<Player>("Gracz 2");
 }
 void Game::setupPlayers(bool aiMode)
 {
@@ -30,7 +31,10 @@ void Game::play() {
     while (!gameOver) {
         bool playerTurn = true; // Zmeinna sprawdzająca czy gracz może wykonać kolejny ruch
        cout << "\nTura: " << currentPlayer->getName() << "\n";
-        opponent->getBoard().printBoard(false); // wyswietlenie ukrytej planszy przeciwnika
+       cout << "-----------------twoja plansza---------------------" << endl;
+        currentPlayer->getBoard().printBoard(true); // wyswietlenie ukrytej planszy przeciwnika 
+        cout << "-----------------plansza przeciwnika---------------------" << endl;
+        opponent->getBoard().printBoard(false);
         while (playerTurn)
         {
        playerTurn = currentPlayer->takeTurn(*opponent); // wykonanie przez gracza ruchu
@@ -39,7 +43,15 @@ void Game::play() {
         cout << currentPlayer->getName() << " trafia! strzel ponownie, \n";
        }else{
         cout << currentPlayer->getName() << " pudłuje. \n";
+        int change;
+        do
+        {
+            cout << "Zmiana gracza na " << opponent->getName() << " wciśnij 1 aby rozpocząć następną kolejkę" << endl; 
+        cin >> change;
+        } while (change != 1);
+        system("cls");
        }
+       
         // sprawdzanie czy wszystkie statki przeciwnka są zatopione
         if (opponent->getBoard().areAllShipsSunk())
         {
@@ -83,3 +95,7 @@ bool Game::askPlayerAgain()
     cin >> choice;
     return (choice == 't' || choice == 'T');
 }
+
+
+
+
